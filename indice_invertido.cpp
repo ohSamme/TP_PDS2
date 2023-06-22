@@ -75,7 +75,7 @@ set<string> InvertedIndex::todas_presentes(vector<string> vetor_palavras){
             documentosRelevantes.insert(documento);
         }
     }
-    
+
     return documentosRelevantes;  
  }
  
@@ -106,4 +106,22 @@ for(auto pair:index){
 }
 
 return score;
+}
+
+void InvertedIndex::imprimir_documentos(string consulta){
+
+    vector<string> palavras = vetor_de_palavras(consulta);
+    set<string> documentosRelevantes = todas_presentes(palavras);
+    map<string, int> documentosScore = score(documentosRelevantes, palavras);
+    vector<pair<string, int>> documentosOrdenados(documentosScore.begin(), documentosScore.end());
+
+    sort(documentosOrdenados.begin(), documentosOrdenados.end(), [](const auto& a, const auto& b) {
+        if (a.second != b.second)
+            return a.second > b.second;
+        return a.first < b.first;
+    });
+
+    for (auto documento : documentosOrdenados) {
+        cout << documento.first << endl;
+    }
 }
