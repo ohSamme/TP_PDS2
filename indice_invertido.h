@@ -16,6 +16,8 @@ public:
 
     set<string> todas_presentes(vector<string> vetor_palavras);
 
+    map<string,int> score(set<string> docs_relevantes, vector<string> vetor_palavras);
+
 private:
     map<string, map<string, int>> index;
 };
