@@ -78,3 +78,32 @@ set<string> InvertedIndex::todas_presentes(vector<string> vetor_palavras){
     
     return documentosRelevantes;  
  }
+ 
+map<string, int> InvertedIndex::score(set<string> docs_relevantes, vector<string> vetor_palavras){
+
+map<string,int> score;
+
+for(auto pair:index){
+
+    string documento = pair.first;
+
+    map<string, int> ocorrencias = pair.second;
+
+    if(docs_relevantes.count(documento) > 0){
+
+        int score_documento = 0;
+
+        for(auto palavra : vetor_palavras){
+            if(ocorrencias.count(palavra) > 0 ){
+
+            score_documento += ocorrencias[palavra];
+
+            }
+        }
+
+        score[documento] = score_documento;
+    }
+}
+
+return score;
+}
