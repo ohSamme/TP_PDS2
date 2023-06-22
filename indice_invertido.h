@@ -10,7 +10,8 @@ using namespace std;
 class InvertedIndex {
 public:
     void indice(const string& directory);
-    vector<string> search(const string& frase) const;
+    
+    vector<string> vetor_de_palavras(string frase);
 
 private:
     map<string, map<string, int>> index;
