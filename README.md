@@ -1,3 +1,2 @@
-# TP PDS2
-
-Algoritmo de maquina de busca.
+# TP_PDS2
+Máquina de Busca - Daniel Neves | Samuel Vladimir
