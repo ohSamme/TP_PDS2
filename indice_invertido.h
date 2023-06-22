@@ -18,6 +18,8 @@ public:
 
     map<string,int> score(set<string> docs_relevantes, vector<string> vetor_palavras);
 
+    void imprimir_documentos(string consulta);
+
 private:
     map<string, map<string, int>> index;
 };
