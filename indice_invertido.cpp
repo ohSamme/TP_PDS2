@@ -54,3 +54,27 @@ vector<string> InvertedIndex::vetor_de_palavras(string frase){
     }
     return vetor_palavras;
 }
+
+set<string> InvertedIndex::todas_presentes(vector<string> vetor_palavras){
+
+    set<string> documentosRelevantes;
+
+    for(auto pair : index){
+        string documento = pair.first;
+        map<string, int> ocorrencias = pair.second;
+
+        bool todas_palavras = true;
+
+        for(string palavraConsulta : vetor_palavras){
+            if(ocorrencias.count(palavraConsulta) == 0){
+                todas_palavras = false;
+                break;
+                }
+            }
+        if(todas_palavras == true){
+            documentosRelevantes.insert(documento);
+        }
+    }
+    
+    return documentosRelevantes;  
+ }
