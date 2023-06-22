@@ -13,7 +13,7 @@ using namespace std;
 
 void InvertedIndex::indice(const string& directory){
     Normalizacao normalizacao;
-    for (const auto& entry : fs::filesystem::directory_iterator(directory)){
+    for (const auto& entry : filesystem::directory_iterator(directory)){
         try {
             ifstream infile(entry.path());
             if (infile.good()) {
@@ -35,4 +35,22 @@ void InvertedIndex::indice(const string& directory){
             printf("Erro desconhecido!");
         }
     }
+}
+
+vector<string> InvertedIndex::vetor_de_palavras(string frase){
+
+    stringstream ss(frase);
+    string palavra;
+    vector<string> vetor_palavras;
+
+    while(ss >> palavra){
+        Normalizacao normalizacao;
+        normalizacao.remover_caracter_especial(palavra);
+        normalizacao.minusculo(palavra);
+        
+        if(!palavra.empty()){
+            vetor_palavras.push_back(palavra);
+        }
+    }
+    return vetor_palavras;
 }
